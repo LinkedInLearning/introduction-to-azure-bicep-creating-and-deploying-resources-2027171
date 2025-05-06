@@ -1,0 +1,16 @@
+# Check the chapter-1 scripts for Login into Azure
+
+# Create the chapter resource group
+az group create -l eastus2 -g 'bicep-chapter2'
+
+# Deploy the implebicepstorage.bicep file to a 'bicep-chapter2' resource group
+az deployment group create -g 'bicep-chapter2' -f .\Chapter-2\simple-torage.bicep -c
+
+# List all your storage accounts
+az storage account list --query [].name -o table
+
+# Deploy storage-w-variables.bicep file with variables and outputs to a RG
+az deployment group create -g 'bicep-chapter2' -f .\Chapter-2\storage-w-variables.bicep
+
+# Clean-up resources without confirmation prompt
+az group delete --name 'bicep-chapter2' --yes
