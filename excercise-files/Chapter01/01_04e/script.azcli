@@ -1,0 +1,19 @@
+# script.azcli
+
+# Checks the Azure CLI version
+az version
+
+# Checks the help for the az command
+az --help
+
+# Checks and upgrdaes the Azure CLI
+az upgrade 
+
+# Check the version of Azure Bicep
+az bicep version
+
+# Check the help for the az bicep command
+az bicep --help
+
+# See all the Bicep versions available
+az bicep list-versions
