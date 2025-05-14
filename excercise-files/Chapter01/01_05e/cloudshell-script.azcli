@@ -1,0 +1,39 @@
+# cloudshell-script.azcli
+
+# Checks the Azure CLI version
+az version
+
+# Checks the help for the az command
+az --help
+
+# Checks the list of resource groups via Azure CLI
+az group list --output table
+
+# List all the files in the current directory
+ls -la
+
+# Check if the Azure Bicep is vailaible in the cloud shell
+az bicep --help
+
+# Check the Azure Bicep version and install it if missing
+az bicep version
+az bicep install
+
+# Upload the Bicep file to the cloud shell
+
+# Check the uploaded file
+ls -la
+
+# Open the Bicep file in the cloud shell editor, modify it, and save it
+. code simple-storage.bicep
+
+# Build the ARM template in the cloud shell
+az bicep build --file simple-storage.bicep
+
+# Using build in view in the cloud shell to see the files
+cat simple-storage.json
+
+# Remove the file using bash command in cloud shell
+rm -rf simple-storage.json
+
+

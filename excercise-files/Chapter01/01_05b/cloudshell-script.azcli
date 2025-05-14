@@ -1,0 +1,4 @@
+# cloudshell-script.azcli
+
+# Checks the Azure CLI version
+az version
