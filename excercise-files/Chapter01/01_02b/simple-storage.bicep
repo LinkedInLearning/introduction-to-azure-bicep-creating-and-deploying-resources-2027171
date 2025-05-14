@@ -1,7 +1,7 @@
 // simple-storage.bicep
 
 resource azurebicepstorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
-  name: 'firstbicepstg21'
+  name: 'firstbicepstg123'
   location: 'eastus2'
   kind: 'StorageV2'
   sku: {
@@ -9,6 +9,6 @@ resource azurebicepstorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   }
   tags: {
     Environment: 'Demo'
-    Project: 'First Look into Azure Bicep'
+    Project: 'Intro to Azure Bicep'
   }
 }

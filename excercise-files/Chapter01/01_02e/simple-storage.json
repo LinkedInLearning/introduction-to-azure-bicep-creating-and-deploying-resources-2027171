@@ -4,16 +4,15 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.4.613.9944",
-      "templateHash": "3994668682898298884"
+      "version": "0.35.1.17967",
+      "templateHash": "15106947308703210543"
     }
   },
-  "functions": [],
   "resources": [
     {
       "type": "Microsoft.Storage/storageAccounts",
       "apiVersion": "2021-02-01",
-      "name": "firstbicepstg21",
+      "name": "firstbicepstg123",
       "location": "eastus2",
       "kind": "StorageV2",
       "sku": {
@@ -21,7 +20,7 @@
       },
       "tags": {
         "Environment": "Demo",
-        "Project": "Introduction to Azure Bicep"
+        "Project": "Intro to Azure Bicep"
       }
     }
   ]
