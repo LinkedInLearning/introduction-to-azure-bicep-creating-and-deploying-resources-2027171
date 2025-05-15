@@ -1,7 +1,11 @@
 param azureRegion string = resourceGroup().location
 
+// Parametrize the app and site names
+param appServicePlanName string = 'asp-myDemoApp-0515'
+param webAppResourceName string = 'webapp-myDemoApp-0515'
+
 resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
-  name: 'asp-myDemoApp'
+  name: appServicePlanName
   location: azureRegion
   sku: {
     name: 'F1'
@@ -10,7 +14,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
 }
 
 resource webAppResource 'Microsoft.Web/sites@2021-01-15' = {
-  name: 'webapp-myDemoApp'
+  name: webAppResourceName
   location: azureRegion
   tags: {
     'hidden-related:${resourceGroup().id}/providers/Microsoft.Web/serverfarms/appServicePlan': 'Resource'
