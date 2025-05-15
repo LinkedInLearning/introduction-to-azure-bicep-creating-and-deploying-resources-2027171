@@ -1,0 +1,11 @@
+
+# Deploy the new bicep file with modules to subscription
+az deployment sub create -l eastus2 -f .\excercise-files\Chapter03\03_02e\multi-deployment.bicep
+
+# List all your acr accounts
+az acr list --query [].name -o table
+
+# Check the results in the Azure portal via CLI or browser
+
+# Clean-up resources without confirmation prompt
+az group delete --name 'bicep-application-rg' --yes

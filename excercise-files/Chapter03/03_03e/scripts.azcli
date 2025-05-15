@@ -1,0 +1,17 @@
+
+### scripts.azcli
+
+# Deploy with modules with pre-flight validation into the subscription
+# Option 1:
+az deployment sub what-if -l eastus2 -f .\excercise-files\Chapter03\03_02e\multi-deployment.bicep
+
+# Option 2: prompt to proceed or not
+az deployment sub create -l eastus2 -f .\excercise-files\Chapter03\03_02e\multi-deployment.bicep -c
+
+# List all your acr accounts
+az acr list --query [].name -o table
+
+# Check the results in the Azure portal via CLI or browser
+
+# Clean-up resources without confirmation prompt
+az group delete --name 'bicep-application-rg' --yes
