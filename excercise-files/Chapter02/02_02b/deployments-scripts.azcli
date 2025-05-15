@@ -1,0 +1,12 @@
+# Login into Azure
+az login --use-device-code
+az account show --query name -o table
+
+# Create the chapter resource group
+az group create -l eastus2 -g 'bicep-chapter2'
+
+# Deploy the implebicepstorage.bicep file to a 'bicep-chapter2' resource group
+az deployment group create -g 'bicep-chapter2' -f .\excercise-files\Chapter02\02_02b\bicep-storage.bicep
+
+# List all your storage accounts
+az storage account list --query [].name -o table

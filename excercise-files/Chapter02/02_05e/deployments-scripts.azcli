@@ -1,0 +1,7 @@
+# Deploy storage-parametrized.bicep file with a parametr file
+az deployment group create -g 'bicep-chapter2' -f .\excercise-files\Chapter02\02_05e\storage-parametrized.bicep -p .\excercise-files\Chapter02\02_05e\storage-parametrized.bicepparam
+
+# List all your storage accounts
+az storage account list --query [].name -o table
+
+# Check the results in the Azure portal via CLI or browser
