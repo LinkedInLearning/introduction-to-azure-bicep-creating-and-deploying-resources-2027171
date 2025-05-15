@@ -1,5 +1,4 @@
 // storage-parametrized.bicep
-// This is example of using expressions, or string interpolation technique.
 
 // concat(storageName, 'dev')
 
