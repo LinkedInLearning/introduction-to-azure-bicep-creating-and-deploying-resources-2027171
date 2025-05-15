@@ -1,10 +1,11 @@
 ### script.azcli
 
-# Step 1: Clean-up resources from your subscription without confirmation prompt, if not done already
-az group delete --name 'bicep-application-rg' --yes
+# Step 1: Deploy the simple-webapp.bicep to a new resource group
 
-# Step 2: Re-run the deployment from the Chapter 3 exercise 03_03e
-
-# Step 3: Export the ARM templates from the RG named 'bicep-application-rg'
+# Step 2: Export the ARM template from the new RG
 
 # Step 4: Move the ARM template file to the folder named 04_02e
+
+# Step 5: Run decompile command to get Bicep file representation
+
+# Step 6: Guide, troubleshoot and explain the decompile command to learners
