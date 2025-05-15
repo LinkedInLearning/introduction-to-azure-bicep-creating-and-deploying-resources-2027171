@@ -1,0 +1,10 @@
+# Create a resource group
+az group create -l eastus2 -g 'bicep-chapter3'
+
+# Deploy the new bicep file
+az deployment group create -g 'bicep-chapter3' -f .\excercise-files\Chapter03\03_01e\container-registry.bicep
+
+# List all your acr accounts
+az acr list --query [].name -o table
+
+# Check the results in the Azure portal via CLI or browser
