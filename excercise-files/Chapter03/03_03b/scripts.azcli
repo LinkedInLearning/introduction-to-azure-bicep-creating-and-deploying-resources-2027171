@@ -11,3 +11,4 @@ az acr list --query [].name -o table
 
 # Clean-up resources without confirmation prompt
 az group delete --name 'bicep-application-rg' --yes
+az group delete --name 'bicep-storage-rg' --yes
