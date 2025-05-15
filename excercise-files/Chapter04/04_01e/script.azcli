@@ -1,0 +1,19 @@
+### script.azcli
+
+# Step 1: Clean-up resources from your subscription without confirmation prompt, if not done already
+az group delete --name 'bicep-application-rg' --yes
+az group delete --name 'bicep-storage-rg' --yes
+
+# Step 2: Re-run the deployment from the Chapter 3 exercise 03_03e
+
+# Step 3: Export the Bicep template into exported-deployment.bicep
+
+# Create a new resource group
+az group create -l eastus2 -g 'bicep-chapter4'
+
+# Deploy the new bicep file
+az deployment group create -g 'bicep-chapter4' -f .\excercise-files\Chapter04\04_01e\exported-deployment.bicep -c 
+
+# Deploy as-is, explain errors
+
+# Change the resource names, as they should be globally unique within Azure naming space
