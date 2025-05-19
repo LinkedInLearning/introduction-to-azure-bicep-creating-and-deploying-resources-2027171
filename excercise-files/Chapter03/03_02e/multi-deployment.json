@@ -1,0 +1,236 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.35.1.17967",
+      "templateHash": "11396929259256782502"
+    }
+  },
+  "parameters": {
+    "azureRegion": {
+      "type": "string",
+      "defaultValue": "eastus2"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/resourceGroups",
+      "apiVersion": "2021-04-01",
+      "name": "bicep-application-rg",
+      "location": "[parameters('azureRegion')]",
+      "tags": {
+        "Environment": "Demo",
+        "Project": "Bicep Demo"
+      }
+    },
+    {
+      "type": "Microsoft.Resources/resourceGroups",
+      "apiVersion": "2021-04-01",
+      "name": "bicep-storage-rg",
+      "location": "[parameters('azureRegion')]",
+      "tags": {
+        "Environment": "Demo",
+        "Project": "Bicep Demo"
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[format('webAppDeployment-{0}', uniqueString(subscriptionResourceId('Microsoft.Resources/resourceGroups', 'bicep-application-rg')))]",
+      "resourceGroup": "bicep-application-rg",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "azureRegion": {
+            "value": "[reference(subscriptionResourceId('Microsoft.Resources/resourceGroups', 'bicep-application-rg'), '2021-04-01', 'full').location]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.35.1.17967",
+              "templateHash": "6869983138936578595"
+            }
+          },
+          "parameters": {
+            "azureRegion": {
+              "type": "string",
+              "defaultValue": "[resourceGroup().location]"
+            },
+            "appServicePlanName": {
+              "type": "string",
+              "defaultValue": "asp-myDemoApp-0515"
+            },
+            "webAppResourceName": {
+              "type": "string",
+              "defaultValue": "webapp-myDemoApp-0515"
+            }
+          },
+          "resources": [
+            {
+              "type": "Microsoft.Web/serverfarms",
+              "apiVersion": "2020-12-01",
+              "name": "[parameters('appServicePlanName')]",
+              "location": "[parameters('azureRegion')]",
+              "sku": {
+                "name": "F1",
+                "capacity": 1
+              }
+            },
+            {
+              "type": "Microsoft.Web/sites",
+              "apiVersion": "2021-01-15",
+              "name": "[parameters('webAppResourceName')]",
+              "location": "[parameters('azureRegion')]",
+              "tags": {
+                "[format('hidden-related:{0}/providers/Microsoft.Web/serverfarms/appServicePlan', resourceGroup().id)]": "Resource"
+              },
+              "properties": {
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('appServicePlanName'))]"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', parameters('appServicePlanName'))]"
+              ]
+            }
+          ],
+          "outputs": {
+            "webAppResourceHostName": {
+              "type": "string",
+              "value": "[reference(resourceId('Microsoft.Web/sites', parameters('webAppResourceName')), '2021-01-15').defaultHostName]"
+            }
+          }
+        }
+      },
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', 'bicep-application-rg')]"
+      ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[format('containerRegistryDeployment-{0}', uniqueString(subscriptionResourceId('Microsoft.Resources/resourceGroups', 'bicep-storage-rg')))]",
+      "resourceGroup": "bicep-storage-rg",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "containerRegistryName": {
+            "value": "demoacrbicep0518"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.35.1.17967",
+              "templateHash": "153253094961446006"
+            }
+          },
+          "parameters": {
+            "containerRegistryName": {
+              "type": "string",
+              "defaultValue": "demoacrbidep0515"
+            }
+          },
+          "resources": [
+            {
+              "type": "Microsoft.ContainerRegistry/registries",
+              "apiVersion": "2021-06-01-preview",
+              "name": "[parameters('containerRegistryName')]",
+              "location": "[resourceGroup().location]",
+              "sku": {
+                "name": "Basic"
+              },
+              "properties": {
+                "adminUserEnabled": true
+              }
+            }
+          ],
+          "outputs": {
+            "loginServer": {
+              "type": "string",
+              "value": "[reference(resourceId('Microsoft.ContainerRegistry/registries', parameters('containerRegistryName')), '2021-06-01-preview').loginServer]"
+            }
+          }
+        }
+      },
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', 'bicep-storage-rg')]"
+      ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[format('storageDeployment-{0}', uniqueString(subscriptionResourceId('Microsoft.Resources/resourceGroups', 'bicep-storage-rg')))]",
+      "resourceGroup": "bicep-storage-rg",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "azureRegion": {
+            "value": "[reference(subscriptionResourceId('Microsoft.Resources/resourceGroups', 'bicep-storage-rg'), '2021-04-01', 'full').location]"
+          },
+          "storageName": {
+            "value": "demostgbicep0518"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.35.1.17967",
+              "templateHash": "17447411765926659364"
+            }
+          },
+          "parameters": {
+            "storageName": {
+              "type": "string"
+            },
+            "azureRegion": {
+              "type": "string"
+            },
+            "environment": {
+              "type": "string",
+              "defaultValue": "dev"
+            }
+          },
+          "variables": {
+            "accountName": "[format('{0}{1}', parameters('storageName'), parameters('environment'))]",
+            "storageAccountSkuName": "[if(equals(parameters('environment'), 'prod'), 'Standard_GRS', 'Standard_LRS')]"
+          },
+          "resources": [
+            {
+              "type": "Microsoft.Storage/storageAccounts",
+              "apiVersion": "2021-02-01",
+              "name": "[variables('accountName')]",
+              "location": "[parameters('azureRegion')]",
+              "kind": "StorageV2",
+              "sku": {
+                "name": "[variables('storageAccountSkuName')]"
+              }
+            }
+          ]
+        }
+      },
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', 'bicep-storage-rg')]"
+      ]
+    }
+  ]
+}
