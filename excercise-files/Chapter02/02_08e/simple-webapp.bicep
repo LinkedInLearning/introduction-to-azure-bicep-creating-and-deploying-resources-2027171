@@ -21,4 +21,3 @@ resource webAppResource 'Microsoft.Web/sites@2021-01-15' = {
 }
 
 output webAppResourceHostName string = webAppResource.properties.defaultHostName
-

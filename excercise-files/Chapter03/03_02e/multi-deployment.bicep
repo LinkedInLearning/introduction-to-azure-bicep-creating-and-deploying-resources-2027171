@@ -2,7 +2,7 @@
 
 targetScope = 'subscription'
 
-// Step 4: Let's parametrize teh deployment location
+// Step 4: Let's parametrize the deployment location
 param azureRegion string = 'eastus2'
 
 resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
