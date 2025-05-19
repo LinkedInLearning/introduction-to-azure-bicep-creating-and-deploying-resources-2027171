@@ -24,5 +24,33 @@ resource webAppResource 'Microsoft.Web/sites@2021-01-15' = {
   }
 }
 
-output webAppResourceHostName string = webAppResource.properties.defaultHostName
+// // Storage Account provisioning
+// param storageAccountName string = 'stmydemoapp0515'
 
+// resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' = {
+//   name: storageAccountName
+//   location: azureRegion
+//   sku: {
+//     name: 'Standard_LRS'
+//   }
+//   kind: 'StorageV2'
+//   properties: {
+//     accessTier: 'Hot'
+//   }
+// }
+
+// // Container Registry provisioning
+// param containerRegistryName string = 'crmydemoapp0515'
+
+// resource containerRegistry 'Microsoft.ContainerRegistry/registries@2025-04-01' = {
+//   name: containerRegistryName
+//   location: azureRegion
+//   sku: {
+//     name: 'Basic'
+//   }
+//   properties: {
+//     adminUserEnabled: true
+//   }
+// }
+
+output webAppResourceHostName string = webAppResource.properties.defaultHostName
