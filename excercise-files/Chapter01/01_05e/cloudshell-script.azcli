@@ -30,10 +30,5 @@ ls -la
 # Build the ARM template in the cloud shell
 az bicep build --file simple-storage.bicep
 
-# Using build in view in the cloud shell to see the files
+# View in the cloud shell 
 cat simple-storage.json
-
-# Remove the file using bash command in cloud shell
-rm -rf simple-storage.json
-
-

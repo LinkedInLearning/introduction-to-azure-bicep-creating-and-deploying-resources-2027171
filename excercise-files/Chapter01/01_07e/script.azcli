@@ -1,0 +1,17 @@
+# script.azcli
+
+# Step 1: Create a new Bicpe code with Azure App Service Plan + Web App
+# res-app-plan & res-web-app
+
+
+# Step 2: Bicep extension + VS Code features
+# Create simple-stg-webapp.bicep in 01_07e
+
+# Auto complete
+# Rename the ASP resource name
+# Show quick typo fixes, like resourceGroooop().location
+# Peek references
+
+# Pro TIP: more improvements could be added by introducing parameters, functions, variables, etc. 
+# Finally deploying this resources into your Azure subscription … Yay!
+# Stay tuned, you will learn all this in the next Chapter.
