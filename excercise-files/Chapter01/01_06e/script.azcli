@@ -1,10 +1,10 @@
 # script.azcli
 
-# Build the ARM template from the empty Bicep file
+# Step 1: Build the ARM template from the empty Bicep file
 az bicep build --file .\excercise-files\Chapter01\01_06b\empty.bicep
 
-# Build the ARM template from the simple sorage Bicep file
+# Step 2: Build the ARM template from the simple sorage Bicep file
 az bicep build --file .\excercise-files\Chapter01\01_06b\simple-storage.bicep
 
-# You may also specify the output file extension
+# Step 3: You may also specify the output file extension
 az bicep build --file .\excercise-files\Chapter01\01_06b\simple-storage.bicep --outdir .\excercise-files\Chapter01\01_06e\
