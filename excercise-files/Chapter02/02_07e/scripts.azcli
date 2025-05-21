@@ -1,7 +1,7 @@
 # Create the chapter resource group
 az group create -l eastus2 -g 'bicep-chapter2'
 
-# Deploy storage-w-variables.bicep with a parametr file
+# Deploy storage-variables.bicep with a parametr file
 az deployment group create -g 'bicep-chapter2' -f .\excercise-files\Chapter02\02_08e\deploy-module.bicep
 
 # List all your storage accounts
