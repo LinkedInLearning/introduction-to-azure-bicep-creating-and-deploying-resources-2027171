@@ -1,7 +1,12 @@
-param azureRegion string = resourceGroup().location
+// appService.bicep
 
+param aspName string
+param azureRegion string
+param webAppName string
+
+// Add App Service Plan and Web App
 resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
-  name: 'asp-myDemoApp'
+  name: aspName
   location: azureRegion
   sku: {
     name: 'F1'
@@ -9,8 +14,8 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
   }
 }
 
-resource webAppResource 'Microsoft.Web/sites@2021-01-15' = {
-  name: 'webapp-myDemoApp'
+resource webApplication 'Microsoft.Web/sites@2021-01-15' = {
+  name: webAppName
   location: azureRegion
   tags: {
     'hidden-related:${resourceGroup().id}/providers/Microsoft.Web/serverfarms/appServicePlan': 'Resource'
@@ -20,4 +25,4 @@ resource webAppResource 'Microsoft.Web/sites@2021-01-15' = {
   }
 }
 
-output webAppResourceHostName string = webAppResource.properties.defaultHostName
+output webAppHostName string = webApplication.properties.defaultHostName
