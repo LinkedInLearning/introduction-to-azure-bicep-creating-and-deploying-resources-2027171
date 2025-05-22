@@ -1,0 +1,19 @@
+# script.azcli
+
+# Create new resource group in WestUs2 region
+az group create -l westus2 -g 'bicep-chp2-modules-test-westus2'
+
+# List all the resource groups
+az group list --query [].name -o table
+
+# Deploy main.bicep file with a parameter file
+az deployment group create -g 'bicep-chp2-modules-test-westus2' -f .\excercise-files\Chapter02\02_07e\main.bicep -p .\excercise-files\Chapter02\02_07e\main.bicepparam
+
+# List all your storage accounts
+az storage account list --query [].name -o table
+az webapp list --query [].name -o table
+
+# Check the results in the Azure portal via CLI or browser
+
+# Clean-up resources without confirmation prompt
+az group delete --name 'bicep-chp2-modules-test-westus2' --yes
