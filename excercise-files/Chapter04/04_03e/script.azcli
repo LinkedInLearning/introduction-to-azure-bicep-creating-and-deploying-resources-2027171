@@ -1,8 +1,12 @@
 ### script.azcli
 
-# Step 1: Clean-up resources from your subscription without confirmation prompt, if not done already
-az group delete --name 'xxx' --yes
+# Step 1: Run decompile command to get Bicep file representation from JSON template
+az bicep decompile -f .\excercise-files\Chapter04\04_02e\template.json
 
-# Step 2: Check and refactor Bicep code, separate resources to modules
+# Step 2: Review the auto-generated Bicep code and change unique identifiers 
+# Test with a new RG 
+az group create -l westus2 -g 'ch4-test-pre-flight-westus2'
+az deployment group create -g 'ch4-test-pre-flight-westus2' -f .\excercise-files\Chapter04\04_03e\template-tmp.bicep -c
 
-# Step 3: Deploy and test after each clean-up & modernization step
+# Step 4: Clean-up RG before deploying Bicep code with same parameters?
+az group delete --name 'chp4-nat-vnet-dev-westus2' --yes

@@ -31,7 +31,7 @@ resource publicIPAddresses_myNATgateway_ip_name_resource 'Microsoft.Network/publ
     '3'
   ]
   properties: {
-    ipAddress: '172.179.113.125'
+    ipAddress: '20.64.135.87'
     publicIPAddressVersion: 'IPv4'
     publicIPAllocationMethod: 'Static'
     idleTimeoutInMinutes: 4
@@ -71,5 +71,3 @@ resource virtualNetworks_myVnet_name_resource 'Microsoft.Network/virtualNetworks
     enableDdosProtection: false
   }
 }
-
-// Removed the separate subnet resource to avoid duplication
