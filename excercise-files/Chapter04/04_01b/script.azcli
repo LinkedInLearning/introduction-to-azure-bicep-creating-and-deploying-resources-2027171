@@ -1,9 +1,9 @@
 ### script.azcli
 
-# Step 1: Clean-up resources from your subscription without confirmation prompt, if not done already
-az group delete --name 'bicep-application-rg' --yes
-az group delete --name 'bicep-storage-rg' --yes
+# Step 1: Virtual Network NAT
+# This template is a resource manager implementation of a quickstart for deploying a NAT gateway. A virtual network is deployed with a single subnet. The NAT gateway resource is associated with this subnet. A single public IP resource is created for the NAT gateway.
+# https://learn.microsoft.com/en-us/samples/azure/azure-quickstart-templates/nat-gateway-vnet/
 
-# Step 2: Re-run the deployment from the Chapter 3 exercise 03_03e
 
-# Step 3: Export the Bicep templates
+# Experiment with other sample scenarios:
+# Check https://learn.microsoft.com/en-us/samples/

@@ -1,10 +1,8 @@
 ### script.azcli
 
 # Step 1: Clean-up resources from your subscription without confirmation prompt, if not done already
-az group delete --name 'bicep-application-rg' --yes
+az group delete --name 'xxx' --yes
 
-# Step 2: Re-run the deployment from the Chapter 3 exercise 03_03e
+# Step 2: Check and refactor Bicep code, separate resources to modules
 
-# Step 3: Export the ARM templates from the RG named 'bicep-application-rg'
-
-# Step 4: Move the ARM template file to the folder named 04_02e
+# Step 3: Deploy and test after each clean-up & modernization step

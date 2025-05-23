@@ -1,7 +1,7 @@
 ### script.azcli
 
-# Step 1: Deploy the simple-webapp.bicep to a new resource group
+# Step 1: Move the ARM template file (template.json) to the folder named 04_02e
 
-# Step 2: Export the ARM template from the new RG
+# Step 2: Decopile the ARM template into a Bicep code
 
-# Step 4: Move the ARM template file to the folder named 04_02e
+# Step 3: Verify the Bicep file 

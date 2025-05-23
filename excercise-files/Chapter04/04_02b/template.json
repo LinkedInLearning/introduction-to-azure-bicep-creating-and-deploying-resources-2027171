@@ -1,0 +1,127 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualNetworks_myVnet_name": {
+            "defaultValue": "myVnet",
+            "type": "String"
+        },
+        "natGateways_myNATgateway_name": {
+            "defaultValue": "myNATgateway",
+            "type": "String"
+        },
+        "publicIPAddresses_myNATgateway_ip_name": {
+            "defaultValue": "myNATgateway-ip",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Network/natGateways",
+            "apiVersion": "2024-05-01",
+            "name": "[parameters('natGateways_myNATgateway_name')]",
+            "location": "westus2",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_myNATgateway_ip_name'))]"
+            ],
+            "sku": {
+                "name": "Standard",
+                "tier": "Regional"
+            },
+            "properties": {
+                "idleTimeoutInMinutes": 4,
+                "publicIpAddresses": [
+                    {
+                        "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_myNATgateway_ip_name'))]"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2024-05-01",
+            "name": "[parameters('publicIPAddresses_myNATgateway_ip_name')]",
+            "location": "westus2",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/natGateways', parameters('natGateways_myNATgateway_name'))]"
+            ],
+            "sku": {
+                "name": "Standard",
+                "tier": "Regional"
+            },
+            "zones": [
+                "1",
+                "2",
+                "3"
+            ],
+            "properties": {
+                "natGateway": {
+                    "id": "[resourceId('Microsoft.Network/natGateways', parameters('natGateways_myNATgateway_name'))]"
+                },
+                "ipAddress": "20.64.135.87",
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Static",
+                "idleTimeoutInMinutes": 4,
+                "dnsSettings": {
+                    "domainNameLabel": "gw-ltppozpodhz54",
+                    "fqdn": "gw-ltppozpodhz54.westus2.cloudapp.azure.com"
+                },
+                "ipTags": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2024-05-01",
+            "name": "[parameters('virtualNetworks_myVnet_name')]",
+            "location": "westus2",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/natGateways', parameters('natGateways_myNATgateway_name'))]"
+            ],
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "192.168.0.0/16"
+                    ]
+                },
+                "privateEndpointVNetPolicies": "Disabled",
+                "subnets": [
+                    {
+                        "name": "mySubnet",
+                        "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_myVnet_name'), 'mySubnet')]",
+                        "properties": {
+                            "addressPrefix": "192.168.0.0/24",
+                            "natGateway": {
+                                "id": "[resourceId('Microsoft.Network/natGateways', parameters('natGateways_myNATgateway_name'))]"
+                            },
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        },
+                        "type": "Microsoft.Network/virtualNetworks/subnets"
+                    }
+                ],
+                "virtualNetworkPeerings": [],
+                "enableDdosProtection": false
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2024-05-01",
+            "name": "[concat(parameters('virtualNetworks_myVnet_name'), '/mySubnet')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_myVnet_name'))]",
+                "[resourceId('Microsoft.Network/natGateways', parameters('natGateways_myNATgateway_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "192.168.0.0/24",
+                "natGateway": {
+                    "id": "[resourceId('Microsoft.Network/natGateways', parameters('natGateways_myNATgateway_name'))]"
+                },
+                "delegations": [],
+                "privateEndpointNetworkPolicies": "Enabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        }
+    ]
+}

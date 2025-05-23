@@ -1,11 +1,12 @@
 ### script.azcli
 
-# Step 1: Deploy the simple-webapp.bicep to a new resource group
+# Step 1: Run decompile command to get Bicep file representation from JSON template
+az bicep decompile -f .\excercise-files\Chapter04\04_02e\template.json
 
-# Step 2: Export the ARM template from the new RG
+# Step 2: Review the auto-generated Bicep code amd change unique identifiers 
 
-# Step 4: Move the ARM template file to the folder named 04_02e
+# Step 3: Verify the Bicep code with pre-flight validation
+az deployment group create -g 'chp4-nat-vnet-dev-westus2' -f .\excercise-files\Chapter04\04_02e\vnet-nat.bicep -c
 
-# Step 5: Run decompile command to get Bicep file representation
-
-# Step 6: Guide, troubleshoot and explain the decompile command to learners
+# Step 4: Clean-up RG before deploying Bicep code with same parameters?
+az group delete --name 'chp4-nat-vnet-dev-westus2' --yes
