@@ -3,7 +3,10 @@
 # Step 1: Run decompile command to get Bicep file representation from JSON template
 az bicep decompile -f .\excercise-files\Chapter04\04_02e\template.json
 
-# Step 2: Review the auto-generated Bicep code amd change unique identifiers 
+# Step 2: Review the auto-generated Bicep code and change unique identifiers 
+# Test with a new RG 
+az group create -l westus2 -g 'ch4-test-pre-flight-westus2'
+az deployment group create -g 'ch4-test-pre-flight-westus2' -f .\excercise-files\Chapter04\04_02e\fixed-template.bicep -cy
 
 # Step 3: Verify the Bicep code with pre-flight validation
 az deployment group create -g 'chp4-nat-vnet-dev-westus2' -f .\excercise-files\Chapter04\04_02e\vnet-nat.bicep -c
