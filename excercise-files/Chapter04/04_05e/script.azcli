@@ -1,0 +1,13 @@
+### script.azcli
+
+# Review a CoPilot generated Bicep code from the diagram 
+az group create -l westus2 -g 'ch4-diagram-test-westus2'
+az deployment group create -g 'ch4-diagram-test-westus2' -f .\excercise-files\Chapter04\04_05e\azure-hand-written-diagram.bicep -c
+
+# Review a CoPilot generated Bicep code from the image in the Azure archiecture center
+# source: https://learn.microsoft.com/en-us/azure/architecture/guide/security/access-azure-kubernetes-service-cluster-api-server
+az group create -l westus2 -g 'ch4-aks-bastion-diagram-westus2'
+az deployment group create -g 'ch4-diagram-test-westus2' -f .\excercise-files\Chapter04\04_05e\aks-private-access-w-bastion.bicep -c
+
+# Clean-up RG before deploying Bicep code with same parameters?
+az group delete --name 'chp4-diagram-test-westus2' --yes

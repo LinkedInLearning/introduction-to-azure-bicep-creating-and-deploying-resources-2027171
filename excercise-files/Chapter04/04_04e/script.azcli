@@ -9,3 +9,6 @@
 # Step 4: Improve formatting of code
 
 # Step 5: Intorduce users to teh Linting and formatting tools
+
+az group create -l westus2 -g 'ch4-test-pre-flight-westus2'
+az deployment group create -g 'ch4-test-pre-flight-westus2' -f .\excercise-files\Chapter04\04_04e\vnet-nat-template.bicep -c
