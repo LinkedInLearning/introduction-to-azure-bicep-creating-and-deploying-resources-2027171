@@ -7,7 +7,6 @@ resource natGateways_myNATgateway_name_resource 'Microsoft.Network/natGateways@2
   location: 'westus2'
   sku: {
     name: 'Standard'
-    tier: 'Regional'
   }
   properties: {
     idleTimeoutInMinutes: 4
@@ -32,10 +31,7 @@ resource publicIPAddresses_myNATgateway_ip_name_resource 'Microsoft.Network/publ
     '3'
   ]
   properties: {
-    natGateway: {
-      id: natGateways_myNATgateway_name_resource.id
-    }
-    ipAddress: '20.64.135.87'
+    ipAddress: '172.179.113.125'
     publicIPAddressVersion: 'IPv4'
     publicIPAllocationMethod: 'Static'
     idleTimeoutInMinutes: 4
@@ -60,7 +56,6 @@ resource virtualNetworks_myVnet_name_resource 'Microsoft.Network/virtualNetworks
     subnets: [
       {
         name: 'mySubnet'
-        id: virtualNetworks_myVnet_name_mySubnet.id
         properties: {
           addressPrefix: '192.168.0.0/24'
           natGateway: {
@@ -70,7 +65,6 @@ resource virtualNetworks_myVnet_name_resource 'Microsoft.Network/virtualNetworks
           privateEndpointNetworkPolicies: 'Enabled'
           privateLinkServiceNetworkPolicies: 'Enabled'
         }
-        type: 'Microsoft.Network/virtualNetworks/subnets'
       }
     ]
     virtualNetworkPeerings: []
@@ -78,18 +72,4 @@ resource virtualNetworks_myVnet_name_resource 'Microsoft.Network/virtualNetworks
   }
 }
 
-resource virtualNetworks_myVnet_name_mySubnet 'Microsoft.Network/virtualNetworks/subnets@2024-05-01' = {
-  name: '${virtualNetworks_myVnet_name}/mySubnet'
-  properties: {
-    addressPrefix: '192.168.0.0/24'
-    natGateway: {
-      id: natGateways_myNATgateway_name_resource.id
-    }
-    delegations: []
-    privateEndpointNetworkPolicies: 'Enabled'
-    privateLinkServiceNetworkPolicies: 'Enabled'
-  }
-  dependsOn: [
-    virtualNetworks_myVnet_name_resource
-  ]
-}
+// Removed the separate subnet resource to avoid duplication
