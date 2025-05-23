@@ -1,14 +1,17 @@
+# script.azcli
 
-### scripts.azcli
+# List all the RGs
+az group list --query [].name -o table
 
-# Deploy the new bicep file with modules to subscription
-az deployment sub create -l eastus2 -f .\excercise-files\Chapter03\03_02e\multi-deployment.bicep
+# Deploy into subscription
+az deployment sub create -l westus2 -f .\excercise-files\Chapter03\03_02e\main.bicep -p .\excercise-files\Chapter03\03_02e\main.bicepparam -c
 
-# List all your acr accounts
+# List all your provisioned services
+az storage account list --query [].name -o table
+az webapp list --query [].name -o table
 az acr list --query [].name -o table
 
 # Check the results in the Azure portal via CLI or browser
 
-# Clean-up resources without confirmation prompt
-az group delete --name 'bicep-application-rg' --yes
-az group delete --name 'bicep-storage-rg' --yes
+# Clean-up RG without confirmation prompt
+az group delete --name 'ch3-bicep-scopes-test-westus2' --yes
