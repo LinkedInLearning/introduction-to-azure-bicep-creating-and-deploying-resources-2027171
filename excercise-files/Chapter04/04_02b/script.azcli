@@ -2,6 +2,6 @@
 
 # Step 1: Move the ARM template file (template.json) to the folder named 04_02e
 
-# Step 2: Decopile the ARM template into a Bicep code
+# Step 2: Decompile the ARM template into a Bicep code
 
 # Step 3: Verify the Bicep file 
