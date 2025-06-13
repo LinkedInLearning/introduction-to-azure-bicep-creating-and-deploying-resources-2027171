@@ -1,11 +1,11 @@
-# Login into Azure
+# Login to Azure
 az login --use-device-code
 az account show --query name -o table
 
-# List all the exisiting resource groups
+# List all the existing resource groups
 az group list --query [].name -o table
 
-# Create the chapter 2 resource group in WestUs2 region
+# Create the chapter 2 resource group in a WestUs2 region
 az group create -l westus2 -g 'bicep-chp2-test-westus2'
 
 # Deploy the simple-storage.bicep file to a resource group
@@ -14,5 +14,5 @@ az deployment group create -g 'bicep-chp2-test-westus2' -f .\excercise-files\Cha
 # List all your storage accounts
 az storage account list --query [].name -o table
 
-# Clean-up resources without confirmation prompt
+# Clean-up resources without a confirmation prompt
 az group delete --name 'bicep-chp2-test-westus2' --yes
