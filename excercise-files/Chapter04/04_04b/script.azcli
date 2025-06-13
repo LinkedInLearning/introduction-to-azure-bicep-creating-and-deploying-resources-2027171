@@ -1,11 +1,11 @@
 ### script.azcli
 
-# Step 1: Explore exisiting Bicep files via GitHub CoPilot chat
+# Step 1: Explore existing Bicep files via GitHub CoPilot chat
 
-# Step 2: Ask copilot to explain the fragments of teh code
+# Step 2: Ask copilot to explain the fragments of the code
 
 # Step 3: Parametrize code
 
 # Step 4: Improve formatting of code
 
-# Step 5: Intorduce users to the Linting and formatting tools
+# Step 5: Introduce users to the Linting and formatting tools
