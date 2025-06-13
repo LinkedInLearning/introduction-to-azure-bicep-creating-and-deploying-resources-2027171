@@ -2,7 +2,7 @@
 az login --use-device-code
 az account show --query name -o table
 
-# List all the exisiting resource groups
+# List all the existing resource groups
 az group list --query [].name -o table
 
 # Create the chapter 2 resource group in a WestUs2 region
