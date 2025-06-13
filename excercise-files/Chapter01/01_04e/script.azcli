@@ -6,7 +6,7 @@ az version
 # Checks the help for the az command
 az --help
 
-# Checks and upgrdaes the Azure CLI
+# Checks and upgrades the Azure CLI
 az upgrade 
 
 # Check the version of Azure Bicep
