@@ -12,7 +12,7 @@ az group list --output table
 # List all the files in the current directory
 ls -la
 
-# Check if the Azure Bicep is vailaible in the cloud shell
+# Check if the Azure Bicep is available in the cloud shell
 az bicep --help
 
 # Check the Azure Bicep version and install it if missing
