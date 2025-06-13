@@ -1,6 +1,6 @@
 # script.azcli
 
-# Create new resource group in WestUs2 region
+# Create a new resource group in a WestUs2 region
 az group create -l westus2 -g 'bicep-chp2-variables-test-westus2'
 
 # List all the resource groups
@@ -14,5 +14,5 @@ az storage account list --query [].name -o table
 
 # Check the results in the Azure portal via CLI or browser
 
-# Clean-up resources without confirmation prompt
+# Clean-up resources without a confirmation prompt
 az group delete --name 'bicep-chp2-variables-test-westus2' --yes
