@@ -1,12 +1,12 @@
 ### script.azcli
 
 # Step 1: Run decompile command to get Bicep file representation from JSON template
-az bicep decompile -f .\excercise-files\Chapter04\04_02e\simple-storage.json
+az bicep decompile -f .\exercise-files\Chapter04\04_02e\simple-storage.json
 
 # Step 2: Review the auto-generated Bicep code and change unique identifiers 
 # Test with a new RG 
 az group create -l westus2 -g 'ch4-test-storage-westus2'
-az deployment group create -g 'ch4-test-storage-westus2' -f .\excercise-files\Chapter04\04_02e\imple-storage.json -c
+az deployment group create -g 'ch4-test-storage-westus2' -f .\exercise-files\Chapter04\04_02e\simple-storage.json -c
 
 # Step 3: Clean-up RG before deploying Bicep code with same parameters?
 az group delete --name 'ch4-test-storage-westus2' --yes

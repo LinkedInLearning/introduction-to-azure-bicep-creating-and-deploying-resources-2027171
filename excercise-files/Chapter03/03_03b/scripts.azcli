@@ -4,7 +4,7 @@
 az group list --query [].name -o table
 
 # Deploy into subscription
-az deployment sub create -l westus2 -f .\excercise-files\Chapter03\03_02e\main.bicep -p .\excercise-files\Chapter03\03_02e\main.bicepparam -c
+az deployment sub create -l westus2 -f .\exercise-files\Chapter03\03_02e\main.bicep -p .\exercise-files\Chapter03\03_02e\main.bicepparam -c
 
 # List all your provisioned services
 az storage account list --query [].name -o table

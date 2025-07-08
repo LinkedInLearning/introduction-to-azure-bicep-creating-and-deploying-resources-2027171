@@ -11,4 +11,4 @@
 # Step 5: Introduce users to the Linting and formatting tools
 
 az group create -l westus2 -g 'ch4-test-pre-flight-westus2'
-az deployment group create -g 'ch4-test-pre-flight-westus2' -f .\excercise-files\Chapter04\04_04e\vnet-nat-template.bicep -c
+az deployment group create -g 'ch4-test-pre-flight-westus2' -f .\exercise-files\Chapter04\04_04e\vnet-nat-template.bicep -c

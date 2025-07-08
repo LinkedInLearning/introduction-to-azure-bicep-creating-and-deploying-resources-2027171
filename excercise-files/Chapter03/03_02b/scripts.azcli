@@ -11,7 +11,7 @@ az group show --name 'ch3-bicep-scopes-test-westus2'
 az group list --query [].name -o table
 
 # Deploy main.bicep file with a parameter file
-az deployment group create -g 'ch3-bicep-scopes-test-westus2' -f .\excercise-files\Chapter03\03_01e\main.bicep -p .\excercise-files\Chapter03\03_01e\main.bicepparam -c
+az deployment group create -g 'ch3-bicep-scopes-test-westus2' -f .\exercise-files\Chapter03\03_01e\main.bicep -p .\exercise-files\Chapter03\03_01e\main.bicepparam -c
 
 # List all your provisioned services
 az storage account list --query [].name -o table
