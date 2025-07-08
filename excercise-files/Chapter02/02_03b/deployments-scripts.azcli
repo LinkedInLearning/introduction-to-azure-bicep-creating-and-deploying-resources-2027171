@@ -9,7 +9,7 @@ az group list --query [].name -o table
 az group create -l westus2 -g 'bicep-chp2-test-westus2'
 
 # Deploy the simple-storage.bicep file to a resource group
-az deployment group create -g 'bicep-chp2-test-westus2' -f .\excercise-files\Chapter02\02_02b\simple-storage.bicep
+az deployment group create -g 'bicep-chp2-test-westus2' -f .\exercise-files\Chapter02\02_02b\simple-storage.bicep
 
 # List all your storage accounts
 az storage account list --query [].name -o table

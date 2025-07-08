@@ -4,7 +4,7 @@ az group create -l westus2 -g 'bicep-chp2-decorator-test-westus2'
 # Showcase the decorators and functions
 
 # Deploy storage-parametrized.bicep file with a parameter file
-az deployment group create -g 'bicep-chp2-decorator-test-westus2' -f .\excercise-files\Chapter02\02_05e\storage-parametrized.bicep -p .\excercise-files\Chapter02\02_05e\parameters.bicepparam
+az deployment group create -g 'bicep-chp2-decorator-test-westus2' -f .\exercise-files\Chapter02\02_05e\storage-parametrized.bicep -p .\exercise-files\Chapter02\02_05e\parameters.bicepparam
 
 # List all your storage accounts
 az storage account list --query [].name -o table

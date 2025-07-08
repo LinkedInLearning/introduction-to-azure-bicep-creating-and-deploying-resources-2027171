@@ -1,6 +1,6 @@
 # script.azcli
 
-# Step 1: Create a new Bicpe code with Azure App Service Plan + Web App
+# Step 1: Create a new Bicep code with Azure App Service Plan + Web App
 # res-app-plan & res-web-app
 
 

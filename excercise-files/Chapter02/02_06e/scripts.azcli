@@ -7,7 +7,7 @@ az group create -l westus2 -g 'bicep-chp2-variables-test-westus2'
 az group list --query [].name -o table
 
 # Deploy main.bicep file with a parameter file
-az deployment group create -g 'bicep-chp2-variables-test-westus2' -f .\excercise-files\Chapter02\02_06e\main.bicep -p .\excercise-files\Chapter02\02_06e\main.bicepparam
+az deployment group create -g 'bicep-chp2-variables-test-westus2' -f .\exercise-files\Chapter02\02_06e\main.bicep -p .\exercise-files\Chapter02\02_06e\main.bicepparam
 
 # List all your storage accounts
 az storage account list --query [].name -o table

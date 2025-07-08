@@ -9,7 +9,7 @@ az group create -l westus2 -g 'bicep-chp2-test-westus2'
 az storage account list --query [].name -o table
 
 # Deploy bicep-storage-parametrized.bicep file with a parameter file
-az deployment group create -g 'bicep-chp2-test-westus2' -f .\excercise-files\Chapter02\02_04e\bicep-storage-paramterized.bicep -p .\excercise-files\Chapter02\02_04e\parameters.bicepparam
+az deployment group create -g 'bicep-chp2-test-westus2' -f .\exercise-files\Chapter02\02_04e\bicep-storage-paramterized.bicep -p .\exercise-files\Chapter02\02_04e\parameters.bicepparam
 
 # Check the results in the Azure portal via CLI or browser
 
